@@ -11,7 +11,9 @@ const UsersCard = ({ users }) => {
         <div key={user.id} className={classes.item}>
           <p>{user.name}</p>
           <p>{user.group}</p>
-          <p>{user.mobile}</p>
+          <p>{user.email}</p>
+          <p>{user.phone}</p>
+          <p>{user.id}</p>
         </div>
       ))}
     </div>

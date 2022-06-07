@@ -1,9 +1,13 @@
 import MainLayout from "../components/MainLayout.jsx";
+import classes from "../styles/Users.module.css";
 
 const Users = ({ users }) => {
   return (
     <MainLayout>
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      <div className={classes.wrapper}>
+        <div className={classes.search}>Тут вид отображения и будет поиск</div>
+        <div>Сначала сортировка, потом вид вывода </div>
+      </div>
     </MainLayout>
   );
 };

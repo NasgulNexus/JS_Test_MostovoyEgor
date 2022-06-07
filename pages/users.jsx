@@ -1,4 +1,5 @@
 import MainLayout from "../components/MainLayout.jsx";
+import UsersTable from "../components/UsersTable.jsx";
 import classes from "../styles/Users.module.css";
 
 const Users = ({ users }) => {
@@ -6,7 +7,9 @@ const Users = ({ users }) => {
     <MainLayout>
       <div className={classes.wrapper}>
         <div className={classes.search}>Тут вид отображения и будет поиск</div>
-        <div>Сначала сортировка, потом вид вывода </div>
+        <div>
+          Сначала сортировка, потом вид вывода <UsersTable users={users} />
+        </div>
       </div>
     </MainLayout>
   );

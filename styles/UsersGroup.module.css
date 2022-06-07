@@ -1,0 +1,11 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.tile {
+  border: 2px solid rgb(200, 200, 200);
+  padding: 10px;
+  margin: 10px;
+}

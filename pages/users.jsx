@@ -8,16 +8,19 @@ import classes from "../styles/Users.module.css";
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");
 
+  const handleSelectChange = event => {
+    setDisplayType(event.target.value);
+  };
+
   return (
     <MainLayout>
       <div className={classes.wrapper}>
         <div className={classes.search}>
-          <select name="select">
-            <option value="table">Таблиц</option>
-            <option value="value2" selected>
-              Значение 2
-            </option>
-            <option value="value3">Значение 3</option>
+          <p>Варианты отображения данных:</p>
+          <select value={displayType} onChange={e => handleSelectChange(e)}>
+            <option value="table">Таблица</option>
+            <option value="card">Карточки пользователей</option>
+            <option value="group">Группы пользователей</option>
           </select>
         </div>
         <div>

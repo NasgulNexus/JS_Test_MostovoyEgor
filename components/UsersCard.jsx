@@ -1,4 +1,5 @@
 import classes from "../styles/UsersCard.module.css";
+import classesWrapper from "../styles/wrapper.module.css";
 
 const UsersCard = ({ users }) => {
   if (!users) {
@@ -6,7 +7,7 @@ const UsersCard = ({ users }) => {
   }
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classesWrapper.wrapper}>
       {users.map(user => (
         <div key={user.id} className={classes.item}>
           <p>{user.name}</p>

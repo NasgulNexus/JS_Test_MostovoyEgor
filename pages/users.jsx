@@ -14,16 +14,20 @@ const Users = ({ users }) => {
 
   return (
     <MainLayout>
-      <div className={classes.wrapper}>
+      <div>
         <div className={classes.search}>
           <p>Варианты отображения данных:</p>
-          <select value={displayType} onChange={e => handleSelectChange(e)}>
+          <select
+            value={displayType}
+            onChange={e => handleSelectChange(e)}
+            className={classes.select}
+          >
             <option value="table">Таблица</option>
             <option value="card">Карточки пользователей</option>
             <option value="group">Группы пользователей</option>
           </select>
         </div>
-        <div>
+        <div className={classes.data}>
           {displayType === "table" ? <UsersTable users={users} /> : null}
           {displayType === "card" ? <UsersCard users={users} /> : null}
           {displayType === "group" ? <UsersGroup users={users} /> : null}

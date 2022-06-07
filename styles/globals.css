@@ -3,6 +3,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+p {
+  font-size: 1rem;
+}
+
 * {
   box-sizing: border-box;
 }

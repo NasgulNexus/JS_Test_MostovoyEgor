@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import classes from "../styles/UsersGroup.module.css";
+import classesWrapper from "../styles/wrapper.module.css";
 
 const UsersGroup = ({ users }) => {
   if (!users) {
@@ -76,7 +77,7 @@ const UsersGroup = ({ users }) => {
   }, [users]); */
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classesWrapper.wrapper}>
       {Object.entries(groupUsers).map(([key, val]) => (
         <div key={key} className={classes.tile}>
           <p>{key}</p>

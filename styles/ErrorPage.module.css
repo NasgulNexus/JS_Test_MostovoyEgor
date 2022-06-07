@@ -1,0 +1,8 @@
+.errorHead {
+  color: red;
+}
+
+.errorDiv {
+  display: flex;
+  justify-content: center;
+}

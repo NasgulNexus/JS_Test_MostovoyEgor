@@ -1,4 +1,4 @@
-import { users } from "./data/users.js";
+import users from "./data/users.json";
 
 const handler = (req, res) => {
   if (req.method === "GET") {

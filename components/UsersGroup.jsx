@@ -83,6 +83,9 @@ const UsersGroup = ({ users }) => {
           {val.map(el => (
             <div key={el.id} className={classes.tile}>
               <p>{el.name}</p>
+              <p>{el.email}</p>
+              <p>{el.phone}</p>
+              <p>{el.id}</p>
             </div>
           ))}
         </div>

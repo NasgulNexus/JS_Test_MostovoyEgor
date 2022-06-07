@@ -1,5 +1,7 @@
+import MainLayout from "../components/MainLayout.jsx";
+
 const Users = () => {
-  return <div> Users</div>;
+  return <MainLayout> Users</MainLayout>;
 };
 
 export default Users;

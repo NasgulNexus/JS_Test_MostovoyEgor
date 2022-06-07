@@ -1,8 +1,7 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import MainLayout from "../components/MainLayout.jsx";
 
 const Home = () => {
-  return <div>fist </div>;
+  return <MainLayout>fist </MainLayout>;
 };
 
 export default Home;

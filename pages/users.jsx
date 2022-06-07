@@ -1,4 +1,5 @@
 import MainLayout from "../components/MainLayout.jsx";
+import UsersCard from "../components/UsersCard.jsx";
 import UsersTable from "../components/UsersTable.jsx";
 import classes from "../styles/Users.module.css";
 
@@ -8,7 +9,7 @@ const Users = ({ users }) => {
       <div className={classes.wrapper}>
         <div className={classes.search}>Тут вид отображения и будет поиск</div>
         <div>
-          Сначала сортировка, потом вид вывода <UsersTable users={users} />
+          <UsersCard users={users} />
         </div>
       </div>
     </MainLayout>

@@ -19,10 +19,10 @@ const UsersTable = ({ users }) => {
         {users.map(user => (
           <tr key={user.id}>
             <td className={classes.td}>{user.name}</td>
-            <td className={classes.td}>{user.companyIndustry}</td>
+            <td className={classes.td}>{user.id}</td>
             <td className={classes.td}>{user.email}</td>
             <td className={classes.td}>{user.group}</td>
-            <td className={classes.td}>{user.mobile}</td>
+            <td className={classes.td}>{user.phone}</td>
           </tr>
         ))}
       </tbody>

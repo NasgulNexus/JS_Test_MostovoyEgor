@@ -20,3 +20,5 @@ const settingSortButtons = [
     title: "Номер телефона"
   }
 ];
+
+export default settingSortButtons;

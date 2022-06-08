@@ -8,6 +8,7 @@ import useSortData from "../components/useSortData";
 import clsx from "clsx";
 import useSearchData from "../components/useSearchData";
 import ButtonSort from "../components/ButtonSort.jsx";
+import settingSortButtons from "../components/settingSortButtons";
 
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");

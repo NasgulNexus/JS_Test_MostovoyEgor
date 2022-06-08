@@ -5,6 +5,19 @@
   background-color: lightblue;
   top: 83px;
   border: 2px;
+  display: flex;
+}
+
+.sort {
+  display: flex;
+}
+
+.sortButton {
+  cursor: pointer;
+}
+
+.sortButtonSelect {
+  background-color: blue;
 }
 
 .data {

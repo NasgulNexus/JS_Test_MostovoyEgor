@@ -8,9 +8,9 @@ const UsersTable = ({ users }) => {
     <table className={classes.table}>
       <thead className={classes.thead}>
         <tr>
-          <th className={classes.th}>Полное имя </th>
-          <th className={classes.th}>Индустрия компании</th>
-          <th className={classes.th}>Электронная почта </th>
+          <th className={classes.th}>Полное имя</th>
+          <th className={classes.th}>ID</th>
+          <th className={classes.th}>Электронная почта</th>
           <th className={classes.th}>Группа</th>
           <th className={classes.th}>Номер телефона</th>
         </tr>

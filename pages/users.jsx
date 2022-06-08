@@ -4,31 +4,23 @@ import UsersCard from "../components/UsersCard.jsx";
 import UsersGroup from "../components/UsersGroup.jsx";
 import UsersTable from "../components/UsersTable.jsx";
 import classes from "../styles/Users.module.css";
+import useSortData from "../components/useSortData";
+import clsx from "clsx";
 
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");
-  const [sortedType, setSortedType] = useState("default");
-  const [usersSorted, setUsersSorted] = useState(users);
+
+  const {
+    data,
+    requestSortAscending,
+    requestSortDescending,
+    requestSortDefault,
+    sortConfig
+  } = useSortData(users);
 
   const handleSelectChange = event => {
     setDisplayType(event.target.value);
   };
-
-  /* useMemo(() => {
-    if (sortedType === "default") {
-      return setUsersSorted(users);
-    }
-    const array = sortedType.split("_");
-    let field = array[0];
-    let type = array[1];
-    const sortedUsersArray = [...users];
-    sortedUsersArray.sort((a, b) => {
-      if (type === "ascending") {
-        return a[field] > b[field] ? 1 : -1;
-      }
-      return a[field] > b[field] ? -1 : 1;
-    });
-  }); */
 
   return (
     <MainLayout>
@@ -46,24 +38,141 @@ const Users = ({ users }) => {
               <option value="group">Группы пользователей</option>
             </select>
           </div>
-          <div>
+          <div className={classes.sort}>
             <p>Варианты сортировки данных:</p>
-            <button>По умолчанию</button>
+            <button
+              onClick={() => requestSortDefault("default")}
+              className={clsx(classes.sortButton, {
+                [classes.sortButtonSelect]:
+                  sortConfig.field === "default" &&
+                  sortConfig.direction === "default"
+              })}
+            >
+              По умолчанию
+            </button>
             <div>
-              <button>
-                <i className="bi bi-arrow-up"></i>
-              </button>
-              <button>
-                <i className="bi bi-arrow-down"></i>
-              </button>
-              <p>Полное имя</p>
+              <div>
+                <button
+                  onClick={() => requestSortAscending("name")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "name" &&
+                      sortConfig.direction === "Ascending"
+                  })}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  onClick={() => requestSortDescending("name")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "name" &&
+                      sortConfig.direction === "Descending"
+                  })}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
+                <span>Полное имя</span>
+              </div>
+              <div>
+                <button
+                  onClick={() => requestSortAscending("id")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "id" &&
+                      sortConfig.direction === "Ascending"
+                  })}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  onClick={() => requestSortDescending("id")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "id" &&
+                      sortConfig.direction === "Descending"
+                  })}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
+                <span>ID</span>
+              </div>
+              <div>
+                <button
+                  onClick={() => requestSortAscending("email")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "email" &&
+                      sortConfig.direction === "Ascending"
+                  })}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  onClick={() => requestSortDescending("email")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "email" &&
+                      sortConfig.direction === "Descending"
+                  })}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
+                <span>Электронная почта</span>
+              </div>
+              <div>
+                <button
+                  onClick={() => requestSortAscending("group")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "group" &&
+                      sortConfig.direction === "Ascending"
+                  })}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  onClick={() => requestSortDescending("group")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "group" &&
+                      sortConfig.direction === "Descending"
+                  })}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
+                <span>Группа</span>
+              </div>
+              <div>
+                <button
+                  onClick={() => requestSortAscending("phone")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "phone" &&
+                      sortConfig.direction === "Ascending"
+                  })}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  onClick={() => requestSortDescending("phone")}
+                  className={clsx(classes.sortButton, {
+                    [classes.sortButtonSelect]:
+                      sortConfig.field === "phone" &&
+                      sortConfig.direction === "Descending"
+                  })}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
+                <span>Номер телефона</span>
+              </div>
             </div>
           </div>
         </div>
         <div className={classes.data}>
-          {displayType === "table" ? <UsersTable users={usersSorted} /> : null}
-          {displayType === "card" ? <UsersCard users={usersSorted} /> : null}
-          {displayType === "group" ? <UsersGroup users={usersSorted} /> : null}
+          {displayType === "table" ? <UsersTable users={data} /> : null}
+          {displayType === "card" ? <UsersCard users={data} /> : null}
+          {displayType === "group" ? <UsersGroup users={data} /> : null}
         </div>
       </div>
     </MainLayout>

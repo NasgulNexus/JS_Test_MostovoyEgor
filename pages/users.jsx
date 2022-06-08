@@ -32,14 +32,7 @@ const Users = ({ users }) => {
   return (
     <MainLayout>
       <div>
-        <div className={classes.search}>
-          <div>
-            <p>Поиск</p>
-            <input
-              type="text"
-              onChange={event => requestSearchData(event.target.value)}
-            />
-          </div>
+        <div className={classes.control}>
           <div>
             <p>Варианты отображения данных:</p>
             <select
@@ -54,16 +47,18 @@ const Users = ({ users }) => {
           </div>
           <div className={classes.sort}>
             <p>Варианты сортировки данных:</p>
-            <button
-              onClick={() => requestSortDefault("default")}
-              className={clsx(classes.sortButton, {
-                [classes.sortButtonSelect]:
-                  sortConfig.field === "default" &&
-                  sortConfig.direction === "default"
-              })}
-            >
-              По умолчанию
-            </button>
+            <div>
+              <button
+                onClick={() => requestSortDefault("default")}
+                className={clsx(classes.sortButton, {
+                  [classes.sortButtonSelect]:
+                    sortConfig.field === "default" &&
+                    sortConfig.direction === "default"
+                })}
+              >
+                По умолчанию
+              </button>
+            </div>
             <div>
               {settingSortButtons.map(settingSortButton => (
                 <ButtonSort
@@ -76,6 +71,14 @@ const Users = ({ users }) => {
                 />
               ))}
             </div>
+          </div>
+          <div>
+            <p>Поиск:</p>
+            <input
+              type="text"
+              onChange={event => requestSearchData(event.target.value)}
+              className={classes.input}
+            />
           </div>
         </div>
         <div className={classes.data}>

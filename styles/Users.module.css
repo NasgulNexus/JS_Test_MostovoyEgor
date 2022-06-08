@@ -1,27 +1,27 @@
-.search {
+.control {
   position: fixed;
-  width: 88%;
+  width: 87.8%;
   padding: 20px;
   background-color: lightblue;
   top: 83px;
   border: 2px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
-.sort {
-  display: flex;
-}
-
-.sortButton {
-  cursor: pointer;
-}
-
-.sortButtonSelect {
-  background-color: blue;
+.input {
+  background-color: transparent;
+  padding: 5px;
+  margin: 0;
+  font-size: inherit;
+  cursor: inherit;
+  border: 1px solid black;
 }
 
 .data {
-  margin-top: 128px;
+  margin-top: 280px;
 }
 
 .select {
@@ -30,4 +30,21 @@
   margin: 0;
   font-size: inherit;
   cursor: inherit;
+  margin: 2px;
+}
+
+.sortButton {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  margin: 4px;
+}
+
+.sortButtonSelect {
+  background-color: #008cba;
+}
+
+.icon {
+  color: aliceblue;
 }

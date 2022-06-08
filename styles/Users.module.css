@@ -14,10 +14,11 @@
 .input {
   background-color: transparent;
   padding: 5px;
-  margin: 0;
   font-size: inherit;
   cursor: inherit;
   border: 1px solid black;
+  margin-top: 10px;
+  margin-left: 2px;
 }
 
 .data {

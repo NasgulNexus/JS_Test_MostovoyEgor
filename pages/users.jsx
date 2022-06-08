@@ -12,6 +12,7 @@ import settingSortButtons from "../components/settingSortButtons";
 
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");
+  const [searchField, setSearchField] = useState("all");
 
   const {
     data,
@@ -22,6 +23,10 @@ const Users = ({ users }) => {
   } = useSortData(users);
 
   const { requestSearchData, itemsUsers } = useSearchData(data);
+
+  const handleSelectSeacrhChange = event => {
+    setSearchField(event.target.value);
+  };
 
   const handleSelectChange = event => {
     setDisplayType(event.target.value);
@@ -71,10 +76,27 @@ const Users = ({ users }) => {
             </div>
           </div>
           <div>
-            <p>Поиск: {itemsUsers.length}</p>
+            <p>Поиск: Найдено пользователей {itemsUsers.length}</p>
+            <div>
+              <p>Варианты поиска:</p>
+              <select
+                value={searchField}
+                onChange={handleSelectSeacrhChange}
+                className={classes.select}
+              >
+                <option value="all">По всем полям</option>
+                <option value="name">Полному имени</option>
+                <option value="id">ID</option>
+                <option value="email">Почте</option>
+                <option value="group">Группе</option>
+                <option value="phone">Телефону</option>
+              </select>
+            </div>
             <input
               type="text"
-              onChange={event => requestSearchData(event.target.value)}
+              onChange={event =>
+                requestSearchData(event.target.value, searchField)
+              }
               className={classes.input}
             />
           </div>

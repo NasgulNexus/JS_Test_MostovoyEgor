@@ -1,28 +1,42 @@
 import { useMemo, useState } from "react";
 
 const useSearchData = data => {
-  const [searchConfig, setSearchConfig] = useState("");
+  const [searchConfig, setSearchConfig] = useState({
+    field: "all",
+    search: ""
+  });
 
-  const requestSearchData = search => {
-    setSearchConfig(search);
+  const requestSearchData = (search, field) => {
+    setSearchConfig({ search: search, field: field });
   };
 
   const searchMemo = useMemo(() => {
     const searchItems = [...data];
-    if (!searchConfig) {
+    if (searchConfig.search === "") {
       return searchItems;
     }
-    return searchItems.filter(user => {
-      if (
-        user.name.toLowerCase().includes(searchConfig.toLowerCase()) ||
-        user.id.toLowerCase().includes(searchConfig.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchConfig.toLowerCase()) ||
-        user.phone.toLowerCase().includes(searchConfig.toLowerCase()) ||
-        user.group.toLowerCase().includes(searchConfig.toLowerCase())
-      ) {
-        return user;
-      }
-    });
+    if (searchConfig.field === "all") {
+      return searchItems.filter(user => {
+        if (
+          user.name.toLowerCase().includes(searchConfig.search.toLowerCase()) ||
+          user.id.toLowerCase().includes(searchConfig.search.toLowerCase()) ||
+          user.email
+            .toLowerCase()
+            .includes(searchConfig.search.toLowerCase()) ||
+          user.phone
+            .toLowerCase()
+            .includes(searchConfig.search.toLowerCase()) ||
+          user.group.toLowerCase().includes(searchConfig.search.toLowerCase())
+        ) {
+          return user;
+        }
+      });
+    }
+    return searchItems.filter(user =>
+      user[searchConfig.field]
+        .toLowerCase()
+        .includes(searchConfig.search.toLowerCase())
+    );
   }, [data, searchConfig]);
 
   return {

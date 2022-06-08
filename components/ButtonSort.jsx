@@ -17,12 +17,7 @@ const ButtonSort = ({
             sortConfig.field === field && sortConfig.direction === "Ascending"
         })}
       >
-        <i
-          className={clsx("bi bi-arrow-up", {
-            [classes.icon]:
-              sortConfig.field === field && sortConfig.direction === "Ascending"
-          })}
-        ></i>
+        <i className="bi bi-arrow-up"></i>
       </button>
       <button
         onClick={() => requestSortDescending(field)}
@@ -31,13 +26,7 @@ const ButtonSort = ({
             sortConfig.field === field && sortConfig.direction === "Descending"
         })}
       >
-        <i
-          className={clsx("bi bi-arrow-down", {
-            [classes.icon]:
-              sortConfig.field === field &&
-              sortConfig.direction === "Descending"
-          })}
-        ></i>
+        <i className="bi bi-arrow-down"></i>
       </button>
       <span>{title}</span>
     </div>

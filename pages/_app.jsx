@@ -1,5 +1,6 @@
 import NextNProgress from "nextjs-progressbar";
 import "../styles/globals.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (

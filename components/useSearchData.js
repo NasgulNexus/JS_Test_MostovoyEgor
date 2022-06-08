@@ -11,6 +11,9 @@ const useSearchData = data => {
   };
 
   const searchMemo = useMemo(() => {
+    if (data === null) {
+      return null;
+    }
     const searchItems = [...data];
     if (searchConfig.search === "") {
       return searchItems;

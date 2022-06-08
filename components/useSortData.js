@@ -30,6 +30,9 @@ const useSortData = items => {
   };
 
   const sortedItems = useMemo(() => {
+    if (items === null) {
+      return null;
+    }
     let sortableItems = [...items];
     if (sortConfig.direction === "default") {
       return sortableItems;

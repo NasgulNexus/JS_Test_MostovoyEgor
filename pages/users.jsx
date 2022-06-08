@@ -32,6 +32,14 @@ const Users = ({ users }) => {
     setDisplayType(event.target.value);
   };
 
+  if (users === null || users.length <= 1) {
+    return (
+      <MainLayout>
+        <div>Нет данных пользователей</div>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout>
       <div>
@@ -117,13 +125,13 @@ export const getStaticProps = async () => {
     const users = await res.json();
     if (!users) {
       return {
-        notFound: true
+        props: { users: null }
       };
     }
     return { props: { users } };
   } catch {
     return {
-      props: { socials: null }
+      props: { users: null }
     };
   }
 };

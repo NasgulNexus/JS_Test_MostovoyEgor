@@ -27,8 +27,6 @@ const Users = ({ users }) => {
     setDisplayType(event.target.value);
   };
 
-  console.log(itemsUsers);
-
   return (
     <MainLayout>
       <div>
@@ -73,7 +71,7 @@ const Users = ({ users }) => {
             </div>
           </div>
           <div>
-            <p>Поиск:</p>
+            <p>Поиск: {itemsUsers.length}</p>
             <input
               type="text"
               onChange={event => requestSearchData(event.target.value)}

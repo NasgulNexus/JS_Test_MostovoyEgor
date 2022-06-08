@@ -1,4 +1,4 @@
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import MainLayout from "../components/MainLayout.jsx";
 import UsersCard from "../components/UsersCard.jsx";
 import UsersGroup from "../components/UsersGroup.jsx";
@@ -7,11 +7,10 @@ import classes from "../styles/Users.module.css";
 import useSortData from "../components/useSortData";
 import clsx from "clsx";
 import useSearchData from "../components/useSearchData";
+import ButtonSort from "../components/ButtonSort.jsx";
 
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");
-  const [search, setSearh] = useState("");
-  const [, startTransition] = useTransition();
 
   const {
     data,
@@ -26,12 +25,6 @@ const Users = ({ users }) => {
   const handleSelectChange = event => {
     setDisplayType(event.target.value);
   };
-
-  /*   const changeHandlerSearch = event => {
-    startTransition(() => {
-      setSearh(event.target.value);
-    });
-  }; */
 
   console.log(itemsUsers);
 
@@ -71,121 +64,16 @@ const Users = ({ users }) => {
               По умолчанию
             </button>
             <div>
-              <div>
-                <button
-                  onClick={() => requestSortAscending("name")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "name" &&
-                      sortConfig.direction === "Ascending"
-                  })}
-                >
-                  <i className="bi bi-arrow-up"></i>
-                </button>
-                <button
-                  onClick={() => requestSortDescending("name")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "name" &&
-                      sortConfig.direction === "Descending"
-                  })}
-                >
-                  <i className="bi bi-arrow-down"></i>
-                </button>
-                <span>Полное имя</span>
-              </div>
-              <div>
-                <button
-                  onClick={() => requestSortAscending("id")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "id" &&
-                      sortConfig.direction === "Ascending"
-                  })}
-                >
-                  <i className="bi bi-arrow-up"></i>
-                </button>
-                <button
-                  onClick={() => requestSortDescending("id")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "id" &&
-                      sortConfig.direction === "Descending"
-                  })}
-                >
-                  <i className="bi bi-arrow-down"></i>
-                </button>
-                <span>ID</span>
-              </div>
-              <div>
-                <button
-                  onClick={() => requestSortAscending("email")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "email" &&
-                      sortConfig.direction === "Ascending"
-                  })}
-                >
-                  <i className="bi bi-arrow-up"></i>
-                </button>
-                <button
-                  onClick={() => requestSortDescending("email")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "email" &&
-                      sortConfig.direction === "Descending"
-                  })}
-                >
-                  <i className="bi bi-arrow-down"></i>
-                </button>
-                <span>Электронная почта</span>
-              </div>
-              <div>
-                <button
-                  onClick={() => requestSortAscending("group")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "group" &&
-                      sortConfig.direction === "Ascending"
-                  })}
-                >
-                  <i className="bi bi-arrow-up"></i>
-                </button>
-                <button
-                  onClick={() => requestSortDescending("group")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "group" &&
-                      sortConfig.direction === "Descending"
-                  })}
-                >
-                  <i className="bi bi-arrow-down"></i>
-                </button>
-                <span>Группа</span>
-              </div>
-              <div>
-                <button
-                  onClick={() => requestSortAscending("phone")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "phone" &&
-                      sortConfig.direction === "Ascending"
-                  })}
-                >
-                  <i className="bi bi-arrow-up"></i>
-                </button>
-                <button
-                  onClick={() => requestSortDescending("phone")}
-                  className={clsx(classes.sortButton, {
-                    [classes.sortButtonSelect]:
-                      sortConfig.field === "phone" &&
-                      sortConfig.direction === "Descending"
-                  })}
-                >
-                  <i className="bi bi-arrow-down"></i>
-                </button>
-                <span>Номер телефона</span>
-              </div>
+              {settingSortButtons.map(settingSortButton => (
+                <ButtonSort
+                  key={settingSortButton.field}
+                  field={settingSortButton.field}
+                  title={settingSortButton.title}
+                  sortConfig={sortConfig}
+                  requestSortAscending={requestSortAscending}
+                  requestSortDescending={requestSortDescending}
+                />
+              ))}
             </div>
           </div>
         </div>

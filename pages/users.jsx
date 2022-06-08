@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState, useTransition } from "react";
 import MainLayout from "../components/MainLayout.jsx";
 import UsersCard from "../components/UsersCard.jsx";
 import UsersGroup from "../components/UsersGroup.jsx";
@@ -6,9 +6,12 @@ import UsersTable from "../components/UsersTable.jsx";
 import classes from "../styles/Users.module.css";
 import useSortData from "../components/useSortData";
 import clsx from "clsx";
+import useSearchData from "../components/useSearchData";
 
 const Users = ({ users }) => {
   const [displayType, setDisplayType] = useState("table");
+  const [search, setSearh] = useState("");
+  const [, startTransition] = useTransition();
 
   const {
     data,
@@ -18,19 +21,36 @@ const Users = ({ users }) => {
     sortConfig
   } = useSortData(users);
 
+  const { requestSearchData, itemsUsers } = useSearchData(data);
+
   const handleSelectChange = event => {
     setDisplayType(event.target.value);
   };
+
+  /*   const changeHandlerSearch = event => {
+    startTransition(() => {
+      setSearh(event.target.value);
+    });
+  }; */
+
+  console.log(itemsUsers);
 
   return (
     <MainLayout>
       <div>
         <div className={classes.search}>
           <div>
+            <p>Поиск</p>
+            <input
+              type="text"
+              onChange={event => requestSearchData(event.target.value)}
+            />
+          </div>
+          <div>
             <p>Варианты отображения данных:</p>
             <select
               value={displayType}
-              onChange={e => handleSelectChange(e)}
+              onChange={handleSelectChange}
               className={classes.select}
             >
               <option value="table">Таблица</option>
@@ -170,9 +190,9 @@ const Users = ({ users }) => {
           </div>
         </div>
         <div className={classes.data}>
-          {displayType === "table" ? <UsersTable users={data} /> : null}
-          {displayType === "card" ? <UsersCard users={data} /> : null}
-          {displayType === "group" ? <UsersGroup users={data} /> : null}
+          {displayType === "table" ? <UsersTable users={itemsUsers} /> : null}
+          {displayType === "card" ? <UsersCard users={itemsUsers} /> : null}
+          {displayType === "group" ? <UsersGroup users={itemsUsers} /> : null}
         </div>
       </div>
     </MainLayout>

@@ -1,6 +1,6 @@
 # JS Тестовое задание Мостовой Егор
 
-### GH-PAGES
+### vercel
 
 https://nasgulnexus.github.io/JS_Test_MostovoyEgor/
 
@@ -8,6 +8,14 @@ https://nasgulnexus.github.io/JS_Test_MostovoyEgor/
 
 ```
     yarn
+```
+
+### Для запуска проекта локально необходимо создать файл .env.local
+
+## Записать внутри файла
+
+```
+    API_HOST = http://localhost:3000/api
 ```
 
 ### Запустить проект

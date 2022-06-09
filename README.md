@@ -2,7 +2,7 @@
 
 ### vercel
 
-https://nasgulnexus.github.io/JS_Test_MostovoyEgor/
+https://js-test-mostovoy-egor.vercel.app/
 
 ### Установить зависимости
 

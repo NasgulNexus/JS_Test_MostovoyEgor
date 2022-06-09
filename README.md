@@ -12,7 +12,7 @@ https://nasgulnexus.github.io/JS_Test_MostovoyEgor/
 
 ### Для запуска проекта локально необходимо создать файл .env.local
 
-## Записать внутри файла
+### Записать внутри файла
 
 ```
     API_HOST = http://localhost:3000/api
